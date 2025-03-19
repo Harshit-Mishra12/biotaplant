@@ -48,15 +48,15 @@ class ProductResource extends Resource
                     ->label('Product Description')
                     ->maxLength(1000),
 
-                TextInput::make('price')
-                    ->numeric()
-                    ->label('Price')
-                    ->required(),
+                // TextInput::make('price')
+                //     ->numeric()
+                //     ->label('Price')
+                //     ->required(),
 
-                TextInput::make('stock')
-                    ->numeric()
-                    ->label('Stock Quantity')
-                    ->required(),
+                // TextInput::make('stock')
+                //     ->numeric()
+                //     ->label('Stock Quantity')
+                //     ->required(),
 
                 FileUpload::make('images')
                     ->image()
@@ -103,13 +103,13 @@ class ProductResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('price')
-                    ->label('Price')
-                    ->sortable(),
+                // TextColumn::make('price')
+                //     ->label('Price')
+                //     ->sortable(),
 
-                TextColumn::make('stock')
-                    ->label('Stock')
-                    ->sortable(),
+                // TextColumn::make('stock')
+                //     ->label('Stock')
+                //     ->sortable(),
 
                 TextColumn::make('is_active')
                     ->label('Status')

@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('price', 10, 2);
-            $table->integer('stock')->default(0);
+           // $table->decimal('price', 10, 2);
+           // $table->integer('stock')->default(0);
             $table->json('images')->nullable(); // Store multiple images as JSON array
             $table->boolean('is_active')->default(true);
             $table->timestamps();
