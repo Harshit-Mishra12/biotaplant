@@ -153,24 +153,28 @@ class AdminPanelProvider extends ServiceProvider
                 ->label('Products')
                 ->url(route('filament.resources.products.index')) // ✅ Correct Filament v2 route
                 ->icon('heroicon-o-shopping-cart'),
-            'orders' => NavigationItem::make()
-                ->label('Orders')
-                ->url(route('filament.resources.orders.index'))
-                ->icon('heroicon-o-truck'), // 🚚 More suitable icon for orders/shipping
+            // 'orders' => NavigationItem::make()
+            //     ->label('Orders')
+            //     ->url(route('filament.resources.orders.index'))
+            //     ->icon('heroicon-o-truck'), // 🚚 More suitable icon for orders/shipping
 
-            'coupons' => NavigationItem::make()
-                ->label('Coupons')
-                ->url(route('filament.resources.coupons.index')) // ✅ Correct Filament v2 route
-                ->icon('heroicon-o-ticket'),
+            // 'coupons' => NavigationItem::make()
+            //     ->label('Coupons')
+            //     ->url(route('filament.resources.coupons.index')) // ✅ Correct Filament v2 route
+            //     ->icon('heroicon-o-ticket'),
 
-            'users' => NavigationItem::make()
-                ->label('Users')
-                ->url(route('filament.resources.users.index')) // ✅ Correct Filament v2 route
-                ->icon('heroicon-o-user-group'),
-            'admins' => NavigationItem::make()
-                ->label('Admins')
-                ->url(route('filament.resources.admins.index')) // ✅ Correct Filament v2 route
-                ->icon('heroicon-o-user-circle'),
+            // 'users' => NavigationItem::make()
+            //     ->label('Users')
+            //     ->url(route('filament.resources.users.index')) // ✅ Correct Filament v2 route
+            //     ->icon('heroicon-o-user-group'),
+            // 'admins' => NavigationItem::make()
+            //     ->label('Admins')
+            //     ->url(route('filament.resources.admins.index')) // ✅ Correct Filament v2 route
+            //     ->icon('heroicon-o-user-circle'),
+            'customer-inquiries' => NavigationItem::make()
+                ->label('Customer Inquiries')
+                ->url(route('filament.resources.customer-inquiries.index')) // ✅ Correct Filament v2 route
+                ->icon('heroicon-o-chat'),
 
 
 
