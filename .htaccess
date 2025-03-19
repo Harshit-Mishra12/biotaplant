@@ -1,0 +1,8 @@
+# Force PHP 8.1
+<IfModule mime_module>
+    AddHandler application/x-httpd-ea-php81 .php .php8 .phtml
+</IfModule>
+
+<FilesMatch "\.(php4|php5|php3|php2|php|phtml)$">
+    SetHandler application/x-lsphp81
+</FilesMatch>

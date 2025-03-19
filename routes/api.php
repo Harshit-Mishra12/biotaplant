@@ -3,6 +3,7 @@
 use App\Http\Controllers\V1\AddressController;
 use App\Http\Controllers\V1\AuthController;
 use App\Http\Controllers\V1\CartController;
+use App\Http\Controllers\V1\CustomerEnquiryController;
 use App\Http\Controllers\V1\ProductController;
 use App\Http\Controllers\V1\WishlistController;
 use Illuminate\Http\Request;
@@ -26,6 +27,9 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('user')->group(function () {
             Route::get("/products/fetch", [ProductController::class, 'fetchProducts']);
+            Route::post("/enquiry/save", [CustomerEnquiryController::class, 'store']);
+
+
             Route::post("/products/wishlist/save", [WishlistController::class, 'addToWishlist']);
 
             Route::get('/wishlist/add/{product_id}', [WishlistController::class, 'addToWishlist']);
@@ -45,6 +49,9 @@ Route::prefix('v1')->group(function () {
 
             Route::post('/profile/save', [AddressController::class, 'updateProfile']);
             Route::post('/profile/fetch', [AddressController::class, 'getProfile']);
+
+
+
         });
     });
 
