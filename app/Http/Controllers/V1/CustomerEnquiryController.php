@@ -30,7 +30,6 @@ class CustomerEnquiryController extends Controller
             'state'        => 'required|string|max:100',
             'district'     => 'required|string|max:100',
         ]);
-
         // ✅ Store data
         $enquiry = CustomerInquiry::create([
             'name'         => $request->name,

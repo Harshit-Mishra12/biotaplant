@@ -29,15 +29,13 @@ jobs:
           chmod -R 777 storage
           chmod -R 777 bootstrap/cache
 
-      - name: Clear Cache and Optimize
+      # (Optional) Local optimization - can be removed
+      - name: Laravel Cache Commands (Local - Optional)
         run: |
           php artisan config:clear
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
-
-      - name: Clear Cache Optimize
-        run: php artisan optimize
 
       - name: Deploy to Hostinger
         uses: appleboy/scp-action@v0.1.0
@@ -48,3 +46,17 @@ jobs:
           port: 65002
           source: .
           target: /home/u790439483/domains/biotaplant.com/public_html/admin2
+
+      - name: Run Laravel Cache Clear on Hostinger
+        uses: appleboy/ssh-action@master
+        with:
+          host: 217.21.94.205
+          username: u790439483
+          password: Rammandir@2021
+          port: 65002
+          script: |
+            cd /home/u790439483/domains/biotaplant.com/public_html/admin2
+            php artisan optimize:clear
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
