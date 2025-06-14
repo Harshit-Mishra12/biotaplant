@@ -67,9 +67,9 @@ class Helper
         $filename = rand(10000, 100000) . '_' . time() . '_' . $file->getClientOriginalName();
         $file->move($path, $filename);
 
-        // $baseUrl = getenv('APP_URL');
+        $baseUrl = getenv('APP_URL');
         // $baseUrl = 'http://127.0.0.1:8000';
-        $baseUrl = 'https://admin2.biotaplant.com';
+        // $baseUrl = 'https://admin2.biotaplant.com';
 
         //  $baseUrl = 'https://paleturquoise-crab-208767.hostingersite.com/runskart/public';
 
