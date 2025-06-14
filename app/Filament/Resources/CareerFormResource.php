@@ -28,6 +28,12 @@ class CareerFormResource extends Resource
             ]);
     }
 
+    public static function canCreate(): bool
+    {
+        return false; // 🚫 Hide "New User" button
+    }
+
+
     public static function table(Table $table): Table
     {
         return $table
