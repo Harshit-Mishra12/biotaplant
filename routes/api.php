@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\V1\AddressController;
 use App\Http\Controllers\V1\AuthController;
+use App\Http\Controllers\V1\CareerFormController;
 use App\Http\Controllers\V1\CartController;
 use App\Http\Controllers\V1\CustomerEnquiryController;
 use App\Http\Controllers\V1\ProductController;
@@ -24,6 +25,7 @@ Route::prefix('v1')->group(function () {
 
     Route::get("/products/fetch", [ProductController::class, 'fetchProducts']);
     Route::post("/enquiry/save", [CustomerEnquiryController::class, 'store']);
+    Route::post('/career/submit', [CareerFormController::class, 'submit']);
     Route::post("/auth/login", [AuthController::class, 'login']);
     Route::post("/auth/register", [AuthController::class, 'register']);
     Route::middleware('auth:sanctum')->group(function () {
@@ -47,9 +49,6 @@ Route::prefix('v1')->group(function () {
 
             Route::post('/profile/save', [AddressController::class, 'updateProfile']);
             Route::post('/profile/fetch', [AddressController::class, 'getProfile']);
-
-
-
         });
     });
 
