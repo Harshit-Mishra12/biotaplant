@@ -49,6 +49,10 @@ class CustomerInquiryResource extends Resource
                     ->label('Name')
                     ->sortable()
                     ->searchable(),
+                TextColumn::make('product_name')
+                    ->label('Product Name')
+                    ->sortable()
+                    ->searchable(),
 
                 TextColumn::make('email')
                     ->label('Email')
