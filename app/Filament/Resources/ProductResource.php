@@ -3,13 +3,11 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
-use Filament\Forms;
-use App\Models\User;
 use Filament\Resources\Form;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
@@ -17,8 +15,6 @@ use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Filters\Filter;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -42,34 +38,40 @@ class ProductResource extends Resource
                 TextInput::make('name')
                     ->label('Product Name')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->columnSpan('full'), // Make it span full width
 
-                Textarea::make('description')
+                RichEditor::make('description') // Full-width Rich Editor
                     ->label('Product Description')
-                    ->maxLength(1000),
-
-                // TextInput::make('price')
-                //     ->numeric()
-                //     ->label('Price')
-                //     ->required(),
-
-                // TextInput::make('stock')
-                //     ->numeric()
-                //     ->label('Stock Quantity')
-                //     ->required(),
+                    ->maxLength(5000)
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'strike',
+                        'underline',
+                        'bulletList',
+                        'orderedList',
+                        'link',
+                        'codeBlock',
+                        'blockquote'
+                    ])
+                    ->columnSpan('full') // Ensures it takes full width
+                    ->required(),
 
                 FileUpload::make('images')
                     ->image()
                     ->multiple()
                     ->maxFiles(5)
                     ->directory('products')
-                    ->storeFileNamesIn('images') // Ensures it's saved as an array
-                    ->required(),
+                    ->storeFileNamesIn('images')
+                    ->required()
+                    ->columnSpan('full'),
 
                 Toggle::make('is_active')
                     ->label('Active')
                     ->default(true),
-            ]);
+            ])
+            ->columns(1); // Ensures a single-column layout for better UI
     }
 
     public static function table(Table $table): Table
@@ -103,13 +105,7 @@ class ProductResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-                // TextColumn::make('price')
-                //     ->label('Price')
-                //     ->sortable(),
 
-                // TextColumn::make('stock')
-                //     ->label('Stock')
-                //     ->sortable(),
 
                 TextColumn::make('is_active')
                     ->label('Status')
@@ -141,19 +137,7 @@ class ProductResource extends Resource
             'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
     }
-    // public static function canViewAny(): bool
-    // {
-    //     $user = Auth::user();
 
-    //     if (!$user) {
-    //         return false; // No authenticated user
-    //     }
-
-    //     // Fetch the role directly from the database
-    //     $role = $user->getRoleFromDatabase();
-
-    //     return $role === 'admin' || in_array('products', $user->allowed_resources ?? []);
-    // }
     public static function canViewAny(): bool
     {
         $user = Auth::user();

@@ -22,14 +22,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
 
+    Route::get("/products/fetch", [ProductController::class, 'fetchProducts']);
+    Route::post("/enquiry/save", [CustomerEnquiryController::class, 'store']);
     Route::post("/auth/login", [AuthController::class, 'login']);
     Route::post("/auth/register", [AuthController::class, 'register']);
     Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('user')->group(function () {
-            Route::get("/products/fetch", [ProductController::class, 'fetchProducts']);
-            Route::post("/enquiry/save", [CustomerEnquiryController::class, 'store']);
-
-
             Route::post("/products/wishlist/save", [WishlistController::class, 'addToWishlist']);
 
             Route::get('/wishlist/add/{product_id}', [WishlistController::class, 'addToWishlist']);

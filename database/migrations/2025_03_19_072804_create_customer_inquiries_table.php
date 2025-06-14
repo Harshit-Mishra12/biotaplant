@@ -14,7 +14,8 @@ class CreateCustomerInquiriesTable extends Migration
         Schema::create('customer_inquiries', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable(false);
-            $table->string('email')->nullable(false)->unique();
+            $table->string('product_name')->nullable(false);
+            $table->string('email')->nullable(false);
             $table->string('phone_number')->nullable(false);
             $table->text('message')->nullable();
             $table->string('state')->nullable();

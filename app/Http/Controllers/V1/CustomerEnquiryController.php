@@ -23,6 +23,7 @@ class CustomerEnquiryController extends Controller
         // ✅ Validation
         $validated = $request->validate([
             'name'         => 'required|string|max:255',
+            'product_name'         => 'required|string|max:255',
             'email'        => 'required|email',
             'phone_number' => 'required|string|max:15',
             'message'      => 'required|string|max:1000',
@@ -31,18 +32,19 @@ class CustomerEnquiryController extends Controller
         ]);
 
         // 🔎 Check if the entry already exists
-        $existingEnquiry = CustomerInquiry::where('email', $request->email)->first();
+        // $existingEnquiry = CustomerInquiry::where('email', $request->email)->first();
 
-        if ($existingEnquiry) {
-            return response()->json([
-                'status_code' => 2,
-                'message'     => 'An inquiry with this email already exists.'
-            ]); // 409 Conflict for duplicate data
-        }
+        // if ($existingEnquiry) {
+        //     return response()->json([
+        //         'status_code' => 2,
+        //         'message'     => 'An inquiry with this email already exists.'
+        //     ]); // 409 Conflict for duplicate data
+        // }
 
         // ✅ Store data
         $enquiry = CustomerInquiry::create([
             'name'         => $request->name,
+            'product_name'         => $request->product_name,
             'email'        => $request->email,
             'phone_number' => $request->phone_number,
             'message'      => $request->message,
@@ -58,5 +60,4 @@ class CustomerEnquiryController extends Controller
             'data'        => $enquiry
         ]);
     }
-
 }
