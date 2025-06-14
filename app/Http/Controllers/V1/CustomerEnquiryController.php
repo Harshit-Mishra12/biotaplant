@@ -31,16 +31,6 @@ class CustomerEnquiryController extends Controller
             'district'     => 'required|string|max:100',
         ]);
 
-        // 🔎 Check if the entry already exists
-        // $existingEnquiry = CustomerInquiry::where('email', $request->email)->first();
-
-        // if ($existingEnquiry) {
-        //     return response()->json([
-        //         'status_code' => 2,
-        //         'message'     => 'An inquiry with this email already exists.'
-        //     ]); // 409 Conflict for duplicate data
-        // }
-
         // ✅ Store data
         $enquiry = CustomerInquiry::create([
             'name'         => $request->name,
