@@ -47,4 +47,4 @@ jobs:
           password: Rammandir@2021
           port: 65002
           source: .
-          target: /home/u790439483/domains/biotaplant.com/public_html/admin2
+          target: /home/u790439483/domains/biotaplant.com/public_html/admin
