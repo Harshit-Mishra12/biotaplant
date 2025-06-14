@@ -1,9 +1,11 @@
 <?php
 
+use App\Filament\Resources\ContactUsResource;
 use App\Http\Controllers\V1\AddressController;
 use App\Http\Controllers\V1\AuthController;
 use App\Http\Controllers\V1\CareerFormController;
 use App\Http\Controllers\V1\CartController;
+use App\Http\Controllers\V1\ContactUsController;
 use App\Http\Controllers\V1\CustomerEnquiryController;
 use App\Http\Controllers\V1\ProductController;
 use App\Http\Controllers\V1\WishlistController;
@@ -28,6 +30,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/career/submit', [CareerFormController::class, 'submit']);
     Route::post("/auth/login", [AuthController::class, 'login']);
     Route::post("/auth/register", [AuthController::class, 'register']);
+    Route::post('/contact-us', [ContactUsController::class, 'ContactUsForm']);
     Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('user')->group(function () {
             Route::post("/products/wishlist/save", [WishlistController::class, 'addToWishlist']);
