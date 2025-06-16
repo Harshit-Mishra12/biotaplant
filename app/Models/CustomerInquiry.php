@@ -11,7 +11,7 @@ class CustomerInquiry extends Model
 
     protected $fillable = [
         'name',
-        'product_name',
+        'product_id',
         'email',
         'phone_number',
         'message',
@@ -29,5 +29,10 @@ class CustomerInquiry extends Model
     public function scopeIncomplete($query)
     {
         return $query->where('status', 'incomplete');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }
