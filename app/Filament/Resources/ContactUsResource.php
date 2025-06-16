@@ -13,9 +13,19 @@ use Filament\Tables\Columns\TextColumn;
 
 class ContactUsResource extends Resource
 {
+    // protected static ?string $model = ContactUs::class;
+
+    // protected static ?string $navigationIcon = 'heroicon-o-collection';
     protected static ?string $model = ContactUs::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    // 🌟 Change the name shown in the sidebar
+    protected static ?string $navigationLabel = 'Contact Us';
+
+    // 📁 Optional: change the group heading in sidebar (if grouped)
+    // protected static ?string $navigationGroup = 'Support';
+
+    // ✨ Change the icon (choose from Heroicons: https://heroicons.com)
+    protected static ?string $navigationIcon = 'heroicon-o-user';
     // public static function shouldRegisterNavigation(): bool
     // {
     //     return false;
@@ -26,12 +36,23 @@ class ContactUsResource extends Resource
         return false; // 🚫 Hide "New User" button
     }
 
+    // public static function canEdit($record): bool
+    // {
+    //     return false;
+    // }
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')->required(),
+                Forms\Components\TextInput::make('product_name')->required(),
+                Forms\Components\TextInput::make('email')->email()->required(),
+                Forms\Components\TextInput::make('phone_number')->required(),
+                Forms\Components\TextInput::make('state'),
+                Forms\Components\TextInput::make('district'),
+                Forms\Components\Textarea::make('message'),
             ]);
     }
 
