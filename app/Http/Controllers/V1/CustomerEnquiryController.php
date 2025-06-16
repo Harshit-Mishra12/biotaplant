@@ -20,29 +20,27 @@ class CustomerEnquiryController extends Controller
 {
     public function store(Request $request)
     {
-        // ✅ Validation
         $validated = $request->validate([
             'name'         => 'required|string|max:255',
-            'product_name'         => 'required|string|max:255',
+            'product_id'   => 'required|exists:products,id',
             'email'        => 'required|email',
             'phone_number' => 'required|string|max:15',
-            'message'      => 'required|string|max:1000',
-            'state'        => 'required|string|max:100',
-            'district'     => 'required|string|max:100',
+            'message'      => 'nullable|string|max:1000',
+            'state'        => 'nullable|string|max:100',
+            'district'     => 'nullable|string|max:100',
         ]);
-        // ✅ Store data
+
         $enquiry = CustomerInquiry::create([
             'name'         => $request->name,
-            'product_name'         => $request->product_name,
+            'product_id'   => $request->product_id,
             'email'        => $request->email,
             'phone_number' => $request->phone_number,
             'message'      => $request->message,
             'state'        => $request->state,
             'district'     => $request->district,
-            'status'       => 'incomplete' // Default status
+            'status'       => 'incomplete',
         ]);
 
-        // ✅ Success response
         return response()->json([
             'status_code' => 1,
             'message'     => 'Customer enquiry submitted successfully!',
