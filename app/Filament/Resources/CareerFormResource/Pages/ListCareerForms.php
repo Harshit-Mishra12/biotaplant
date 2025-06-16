@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListCareerForms extends ListRecords
 {
     protected static string $resource = CareerFormResource::class;
+    protected static ?string $title = 'Career Submissions';
 
     protected function getActions(): array
     {

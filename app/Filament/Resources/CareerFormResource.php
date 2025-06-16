@@ -10,28 +10,57 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\View;
 
 class CareerFormResource extends Resource
 {
     protected static ?string $model = CareerForm::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationLabel = 'Career Submissions';
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                //
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('name')
+                ->label('Name')
+                ->disabled(),
+
+            Forms\Components\TextInput::make('email')
+                ->label('Email')
+                ->disabled(),
+
+            Forms\Components\TextInput::make('phone')
+                ->label('Phone')
+                ->disabled(),
+
+            Forms\Components\TextInput::make('current_location')
+                ->label('Location')
+                ->disabled(),
+
+            Forms\Components\View::make('components.cv-view-link')
+                ->label('CV File')
+                ->columnSpan('full'),
+
+            Forms\Components\Placeholder::make('submitted_on')
+                ->label('Submitted On')
+                ->content(fn($record) => $record?->created_at->format('d M Y, H:i')),
+        ]);
     }
+
+
+
+
 
     public static function canCreate(): bool
     {
         return false; // 🚫 Hide "New User" button
     }
+    public static function canEdit($record): bool
+    {
+        return false;
+    }
+
 
 
     public static function table(Table $table): Table
