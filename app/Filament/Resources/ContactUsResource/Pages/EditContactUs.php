@@ -10,10 +10,26 @@ class EditContactUs extends EditRecord
 {
     protected static string $resource = ContactUsResource::class;
 
-    protected function getActions(): array
+    // protected function getActions(): array
+    // {
+    //     return [
+    //         Actions\DeleteAction::make(),
+    //     ];
+    // }
+    protected function mutateFormDataBeforeFill(array $data): array
     {
-        return [
-            Actions\DeleteAction::make(),
-        ];
+        // You can customize the data here before it's shown
+        return $data;
+    }
+
+    protected function getFormActions(): array
+    {
+        // Hides the "Save" and other form buttons
+        return [];
+    }
+
+    protected function getTitle(): string
+    {
+        return 'View Contact Data';
     }
 }
