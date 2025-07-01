@@ -99,7 +99,9 @@ class ContactUsResource extends Resource
             Tables\Columns\TextColumn::make('district'),
             Tables\Columns\TextColumn::make('message')->limit(50),
             Tables\Columns\TextColumn::make('created_at')->dateTime()->label('Submitted On'),
-        ])->defaultSort('created_at', 'desc')->filters([]);
+        ])
+            ->actions([])
+            ->defaultSort('created_at', 'desc')->filters([]);
     }
 
     public static function getRelations(): array
