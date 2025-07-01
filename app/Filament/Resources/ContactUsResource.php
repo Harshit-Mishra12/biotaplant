@@ -42,19 +42,51 @@ class ContactUsResource extends Resource
     // }
 
 
+    // public static function form(Form $form): Form
+    // {
+    //     return $form
+    //         ->schema([
+    //             Forms\Components\TextInput::make('name')->required(),
+    //             Forms\Components\TextInput::make('product_name')->required(),
+    //             Forms\Components\TextInput::make('email')->email()->required(),
+    //             Forms\Components\TextInput::make('phone_number')->required(),
+    //             Forms\Components\TextInput::make('state'),
+    //             Forms\Components\TextInput::make('district'),
+    //             Forms\Components\Textarea::make('message'),
+    //         ]);
+    // }
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('product_name')->required(),
-                Forms\Components\TextInput::make('email')->email()->required(),
-                Forms\Components\TextInput::make('phone_number')->required(),
-                Forms\Components\TextInput::make('state'),
-                Forms\Components\TextInput::make('district'),
-                Forms\Components\Textarea::make('message'),
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->disabled(),
+
+                Forms\Components\TextInput::make('product_name')
+                    ->required()
+                    ->disabled(),
+
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->required()
+                    ->disabled(),
+
+                Forms\Components\TextInput::make('phone_number')
+                    ->required()
+                    ->disabled(),
+
+                Forms\Components\TextInput::make('state')
+                    ->disabled(),
+
+                Forms\Components\TextInput::make('district')
+                    ->disabled(),
+
+                Forms\Components\Textarea::make('message')
+                    ->disabled(),
             ]);
     }
+
 
     public static function table(Table $table): Table
     {

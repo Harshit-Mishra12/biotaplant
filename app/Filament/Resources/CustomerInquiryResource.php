@@ -30,13 +30,55 @@ class CustomerInquiryResource extends Resource
         return false; // 🚫 Hide "New User" button
     }
 
+    // public static function form(Form $form): Form
+    // {
+    //     return $form
+    //         ->schema([
+    //             //
+    //         ]);
+    // }
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                //
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('name')
+                ->label('Name')
+                ->disabled(),
+
+            Forms\Components\TextInput::make('email')
+                ->label('Email')
+                ->disabled(),
+
+            Forms\Components\TextInput::make('phone_number')
+                ->label('Phone')
+                ->disabled(),
+
+            Forms\Components\TextInput::make('state')
+                ->label('State')
+                ->disabled(),
+
+            Forms\Components\TextInput::make('district')
+                ->label('District')
+                ->disabled(),
+
+            Forms\Components\Select::make('product_id')
+                ->label('Product')
+                ->relationship('product', 'name')
+                ->disabled(),
+
+            Forms\Components\Textarea::make('message')
+                ->label('Message')
+                ->disabled(),
+
+            Forms\Components\Select::make('status')
+                ->label('Status')
+                ->options([
+                    'complete' => '✅ Completed',
+                    'incomplete' => '❌ Incomplete',
+                ])
+                ->disabled(),
+        ]);
     }
+
 
     public static function table(Table $table): Table
     {
@@ -135,6 +177,7 @@ class CustomerInquiryResource extends Resource
             'index' => Pages\ListCustomerInquiries::route('/'),
             'create' => Pages\CreateCustomerInquiry::route('/create'),
             'edit' => Pages\EditCustomerInquiry::route('/{record}/edit'),
+            // 'view' => Pages\ViewCustomerInquiry::route('/{record}/view'),
         ];
     }
 }
